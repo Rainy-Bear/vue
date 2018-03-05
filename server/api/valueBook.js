@@ -7,9 +7,9 @@ var router = express.Router();
 var mysql = require('mysql');
 
 router.get('/getVB', function (req, res, next) {
-  connection = mysql.createConnection(models.mysql);
+  var connection = mysql.createConnection(models.mysql);
   connection.connect(function (err) {
-    if (err){
+    if (err) {
       console.log(err);
     }
   });
@@ -21,18 +21,18 @@ router.get('/getVB', function (req, res, next) {
 });
 
 router.get('/getOneVB', function (req, res, next) {
-  connection = mysql.createConnection(models.mysql);
+  var connection = mysql.createConnection(models.mysql);
   connection.connect(function (err) {
-    if (err){
+    if (err) {
       console.log(err);
     }
   });
   var condition = {
-      'id': req.query.id
+    'id': req.query.id
   };
   var sql = 'select * from contributor where id = ?';
   var params = [condition.id];
-  connection.query(sql,params, function (err, result) {
+  connection.query(sql, params, function (err, result) {
     res.send(result);
   });
   connection.end();

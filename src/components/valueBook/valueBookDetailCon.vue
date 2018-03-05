@@ -22,7 +22,7 @@
     mounted: function () {
       var num = Math.ceil(Math.random() * 6);
       this.$refs.bgColor.style.backgroundColor = this.color[num];
-      this.$ajax.get('/api/valueBook/getOneVB', {params: {id: this.$route.query.id}}, {emulateJSON: true}).then((res) => {
+      this.$http.get('/api/valueBook/getOneVB', {params: {id: this.$route.query.id}}, {emulateJSON: true}).then((res) => {
         this.name = res.data[0].name;
         this.spell = res.data[0].spell;
         this.des = res.data[0].des;

@@ -6,7 +6,8 @@
       <span class="heroTypeIntro">{{heroTypeIntro}}</span>
     </div>
     <div class="heroTypeCon">
-      <router-link class="heroList" v-for="(item, index) in heroListArr" :key="item.heroId" :to="{name:'heroDetail',params:{heroId: item.heroId}}">
+      <router-link class="heroList" v-for="item in heroListArr" :key="item.heroId"
+                   :to="{name:'heroDetail',params:{heroId: item.heroId}}">
         <img class="heroImg" :src="item.imgUrl" alt="">
         <div class="name">
           <span class="heroName">{{item.name}}</span>
@@ -29,19 +30,19 @@
         heroListArr: ""
       }
     },
-    mounted:function () {
-        this.$ajax.get('/api/heroType/getOneType',{params: {heroTypeId: this.$route.params.heroTypeId}},{emulateJSON: true}).then((result) =>{
-          this.heroTypeImg = result.data[0].heroTypeImg;
-          this.heroTypeName = result.data[0].heroTypeName;
-          this.heroTypeIntro = result.data[0].heroTypeIntro;
-        }).catch((result)=>{
-          console.log(result);
-        });
-        this.$ajax.get("/api/hero/getOneTypeList",{params: {heroTypeId: this.$route.params.heroTypeId}},{emulateJSON: true}).then((result)=>{
-          this.heroListArr = result.data;
-        }).catch((result)=>{
-           console.log(result);
-        });
+    mounted: function () {
+      this.$http.get('/api/heroType/getOneType', {params: {heroTypeId: this.$route.params.heroTypeId}}, {emulateJSON: true}).then((result) => {
+        this.heroTypeImg = result.data[0].heroTypeImg;
+        this.heroTypeName = result.data[0].heroTypeName;
+        this.heroTypeIntro = result.data[0].heroTypeIntro;
+      }).catch((result) => {
+        console.log(result);
+      });
+      this.$http.get("/api/hero/getOneTypeList", {params: {heroTypeId: this.$route.params.heroTypeId}}, {emulateJSON: true}).then((result) => {
+        this.heroListArr = result.data;
+      }).catch((result) => {
+        console.log(result);
+      });
     }
   }
 </script>
@@ -51,9 +52,8 @@
     position: relative;
     width: 94%;
     height: 255px;
-    margin: 0 auto;
+    margin: 41px auto 0 auto;
     text-align: center;
-    margin-top: 30px;
   }
 
   .delHero img {
@@ -71,7 +71,7 @@
     top: 170px;
     left: 50%;
     font-size: 16px;
-    margin-left: -8px;
+    margin-left: -10px;
   }
 
   .delHero .heroTypeIntro {
@@ -86,7 +86,6 @@
   .heroTypeCon {
     width: 94%;
     margin: 0 3%;
-    padding: 0 0 10px;
   }
 
   .heroTypeCon .heroList {
@@ -95,10 +94,7 @@
     width: 100%;
     margin-top: 15px;
     height: 60px;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
+    border-radius: 30px 3px 3px 30px;
     box-shadow: 0 0 2px #999;
   }
 
@@ -119,12 +115,14 @@
     float: left;
     padding: 10px 0;
   }
+
   .heroTypeCon .heroList .name .heroName {
     display: block;
     font-size: 16px;
     color: #666;
     line-height: 24px;
   }
+
   .heroTypeCon .heroList .name .heroTitle {
     display: block;
     font-size: 12px;
@@ -138,7 +136,7 @@
     height: 32px;
     display: inline-block;
     line-height: 60px;
-    margin-top: 12px;
+    margin-top: 14px;
     margin-right: 10px;
   }
 </style>

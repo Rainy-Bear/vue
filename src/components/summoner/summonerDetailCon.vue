@@ -33,7 +33,7 @@
     mounted: function () {
       var num = Math.ceil(Math.random()*6);
       this.$refs.bgColor.style.backgroundColor = this.color[num];
-      this.$ajax.get("/api/summoner/getOneSummoner",{params: {summonerId: this.$route.params.summonerId}},{emulateJSON: true}).then((result) => {
+      this.$http.get("/api/summoner/getOneSummoner",{params: {summonerId: this.$route.params.summonerId}},{emulateJSON: true}).then((result) => {
         this.summoner.img = result.data[0].imgUrl;
         this.summoner.name = result.data[0].name;
         this.summoner.level = result.data[0].level;

@@ -5,11 +5,11 @@
     </div>
     <div class="useSkillIntro">
       <div class="whoUse">
-        <span v-for="(item,index) in whoUse" @click="whoUseClick(index)" :class="{active: index===indexs}">{{item}}</span>
+        <span v-for="(item,index) in whoUse" @click="whoUseClick(index)" :class="{active: index === indexs}">{{item}}</span>
       </div>
       <div class="useIntro" >
-        <span v-for="(item,index) in myselfUseIntro" :class="{marTop: index>0}" v-if="indexs === 0">{{item}}</span>
-        <span v-for="(item,index) in enemyUseIntro" :class="{marTop: index>0}" v-if="indexs === 1">{{item}}</span>
+        <span v-for="(item,index) in myselfUseIntro" :class="{marTop: index > 0}" v-if="indexs === 0">{{item}}</span>
+        <span v-for="(item,index) in enemyUseIntro" :class="{marTop: index > 0}" v-if="indexs === 1">{{item}}</span>
       </div>
     </div>
   </div>
@@ -32,7 +32,7 @@
      }
    },
    mounted: function () {
-     this.$ajax.get("/api/hero/getUseSkill",{params: {heroId:this.$route.params.heroId}}, {emulateJSON: true}).then((result) => {
+     this.$http.get("/api/hero/getUseSkill",{params: {heroId:this.$route.params.heroId}}, {emulateJSON: true}).then((result) => {
         this.myselfUseIntro = result.data[0].myselfUseIntro.split("#");
         this.enemyUseIntro = result.data[0].enemyUseIntro.split("#");
      }).catch((result) => {

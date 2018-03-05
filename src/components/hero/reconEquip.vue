@@ -4,13 +4,14 @@
     <div class="reIntro">
       <div class="reMap">
         <span v-for="(item, index) in reconEquip.map" :class="{active: index === reconEquip.index}"
-              v-on:click="clickMapName(index)">{{item.name}}</span>
+              @click="clickMapName(index)">{{item.name}}</span>
       </div>
       <div class="equip" ref="equip">
-        <div class="equipList" v-for="(item,index) in reconEquip.equipMap" v-if="item!==null">
+        <div class="equipList" v-for="item in reconEquip.equipMap" v-if="item !== null">
           <span class="equipName" v-for="items in item[0]">{{items.name}}</span>
           <div class="equipImg" :style="{width: reconEquip.equipImgWidth + 'px'}">
-            <router-link v-for="(items, index) in item[1]" :key="items.goodId" :to="{name: 'goodDetail',params: {goodId: items.goodId}}">
+            <router-link v-for="items in item[1]" :key="items.goodId"
+                         :to="{name: 'goodDetail',params: {goodId: items.goodId}}">
               <img :src="items.imgUrl" alt="">
             </router-link>
           </div>
@@ -39,11 +40,17 @@
       }
     },
     methods: {
-      clickMapName: function(index)  {
+      clickMapName: function (index) {
         this.reconEquip.index = index;
-        this.reconEquip.equipMap = "";
-        this.$ajax.get('/api/goods/getEquip',{params: {heroId: this.$route.params.heroId,mapId: (index+1)}},{emulateJSON: true}).then((result) => {
+        this.reconEquip.equipMap = [];
+        this.$http.get('/api/goods/getEquip', {
+          params: {
+            heroId: this.$route.params.heroId,
+            mapId: (index + 1)
+          }
+        }, {emulateJSON: true}).then((result) => {
           this.reconEquip.equipMap = result.data;
+          console.log(result.data);
         }).catch((result) => {
           console.log(result);
         });
@@ -54,7 +61,12 @@
       this.reconEquip.equipWidth = this.$refs.equip.getBoundingClientRect().width;
       var equipNameWidth = '68px';
       this.reconEquip.equipImgWidth = parseInt(this.reconEquip.equipWidth) - parseInt(equipNameWidth) - parseInt(5);
-      this.$ajax.get('/api/goods/getEquip',{params: {heroId: this.$route.params.heroId,mapId: (this.reconEquip.index+1)}},{emulateJSON: true}).then((result) => {
+      this.$http.get('/api/goods/getEquip', {
+        params: {
+          heroId: this.$route.params.heroId,
+          mapId: (this.reconEquip.index + 1)
+        }
+      }, {emulateJSON: true}).then((result) => {
         this.reconEquip.equipMap = result.data;
       }).catch((result) => {
         console.log(result);
@@ -67,6 +79,7 @@
   .clear {
     clear: both;
   }
+
   .reconEquip {
     margin-top: 10px;
     background-color: #FFFFFF;
@@ -120,6 +133,7 @@
     width: 100%;
     height: 60px;
   }
+
   .reconEquip .reIntro .equipList .equipName {
     width: 68px;
     height: 60px;
@@ -145,7 +159,7 @@
     float: left;
   }
 
-  .reconEquip .reIntro .equipList .equipImg a img{
+  .reconEquip .reIntro .equipList .equipImg a img {
     display: block;
     width: 48px;
     height: 48px;

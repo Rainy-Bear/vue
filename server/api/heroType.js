@@ -7,9 +7,9 @@ var router = express.Router();
 var mysql = require('mysql');
 
 router.get('/heroType', function (req, res, next) {
-  connection = mysql.createConnection(models.mysql);
+  var connection = mysql.createConnection(models.mysql);
   connection.connect(function (err) {
-    if (err){
+    if (err) {
       console.log(err);
     }
   });
@@ -21,9 +21,9 @@ router.get('/heroType', function (req, res, next) {
 });
 
 router.get('/getOneType', function (req, res, next) {
-  connection = mysql.createConnection(connection.config);
+  var connection = mysql.createConnection(models.mysql);
   connection.connect(function (err) {
-    if (err){
+    if (err) {
       console.log(err);
     }
   });
@@ -32,7 +32,7 @@ router.get('/getOneType', function (req, res, next) {
   };
   var sql = 'select * from heroType where heroTypeId = ?';
   var params = [condition.heroTypeId];
-  connection.query(sql,params, function (err, result) {
+  connection.query(sql, params, function (err, result) {
     res.send(result);
   });
   connection.end();

@@ -39,11 +39,11 @@
   }
 
   .content .navBar span a {
-      text-decoration: none;
-      color: #000000;
-      display: inline-block;
-      width: 80%;
-    }
+    text-decoration: none;
+    color: #000000;
+    display: inline-block;
+    width: 80%;
+  }
 
   .router-link-active {
     color: #D4A93E;

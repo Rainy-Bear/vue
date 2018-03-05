@@ -8,9 +8,9 @@ var mysql = require('mysql');
 
 //获取召唤师技能列表
 router.get('/getSummonerList', function (req, res, next) {
-  connection = mysql.createConnection(models.mysql);
+  var connection = mysql.createConnection(models.mysql);
   connection.connect(function (err) {
-    if (err){
+    if (err) {
       console.log(err);
     }
   });
@@ -24,9 +24,9 @@ router.get('/getSummonerList', function (req, res, next) {
 
 //获取一个召唤师技能
 router.get('/getOneSummoner', function (req, res, next) {
-  connection = mysql.createConnection(models.mysql);
+  var connection = mysql.createConnection(models.mysql);
   connection.connect(function (err) {
-    if (err){
+    if (err) {
       console.log(err);
     }
   });
@@ -35,7 +35,7 @@ router.get('/getOneSummoner', function (req, res, next) {
   }
   var sql = 'select * from summoner where summonerId = ?';
   var params = [condition.summonerId];
-  connection.query(sql,params, function (err, result) {
+  connection.query(sql, params, function (err, result) {
     res.send(result);
   });
   connection.end();

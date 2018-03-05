@@ -20,7 +20,7 @@
       }
     },
     mounted: function () {
-      this.$ajax.get("/api/summoner/getSummonerList").then((result) => {
+      this.$http.get("/api/summoner/getSummonerList").then((result) => {
         this.summoner = result.data;
       }).catch((result) => {
         console.clear(result);

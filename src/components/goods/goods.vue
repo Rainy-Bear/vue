@@ -1,13 +1,16 @@
 <template>
   <div class="goods">
     <div class="goodType">
-      <div class="oneGoodType" v-for="(item,index) in goodType" :class="{marLeft: index>0}" @click="goodTypeClick(index,$event)">
-        <span class="circle" :class="{activeBgColor: index===indexs}"></span>
+      <div class="oneGoodType" v-for="(item,index) in goodType" :class="{marLeft: index > 0}"
+           @click="goodTypeClick(index)">
+        <span class="circle" :class="{activeBgColor: index === indexs}"></span>
         <span class="goodTypeName">{{item.goodTypeName}}</span>
       </div>
     </div>
     <div class="oneGoodTypeList">
-      <router-link v-for="(item,index) in oneGoodTypeList" :key="item.goodId" :to="{name:'goodDetail',params:{goodId:item.goodId}}" class="oneGood" :class="{marTop: index>2,marLeft: index%3!==0}">
+      <router-link v-for="(item,index) in oneGoodTypeList" :key="item.goodId"
+                   :to="{name:'goodDetail',params:{goodId:item.goodId}}" class="oneGood"
+                   :class="{marTop: index > 2, marLeft: index % 3 !== 0}">
         <img :src="item.imgUrl" alt="">
         <span>{{item.name}}</span>
       </router-link>
@@ -17,7 +20,7 @@
 </template>
 
 <script>
-  export default{
+  export default {
     name: 'goods',
     data() {
       return {
@@ -27,9 +30,9 @@
       }
     },
     methods: {
-      goodTypeClick:function (index,event) {
+      goodTypeClick: function (index) {
         this.indexs = index;
-        this.$ajax.get("/api/goods/getOneGoodTypeList",{params:{goodTypeId: (index + 1)}}, {emulateJSON: true}).then((result) => {
+        this.$http.get("/api/goods/getOneGoodTypeList", {params: {goodTypeId: (index + 1)}}, {emulateJSON: true}).then((result) => {
           this.oneGoodTypeList = result.data;
         }).catch((result) => {
           console.log(result);
@@ -38,13 +41,13 @@
     },
     mounted: function () {
       //获取所有物品类型
-      this.$ajax.get("/api/goods/getAllGoodType", {emulateJSON: true}).then((result) => {
+      this.$http.get("/api/goods/getAllGoodType", {emulateJSON: true}).then((result) => {
         this.goodType = result.data;
       }).catch((result) => {
         console.log(result);
       });
       //获取一类物品
-      this.$ajax.get("/api/goods/getOneGoodTypeList",{params:{goodTypeId: (this.indexs + 1)}}, {emulateJSON: true}).then((result) => {
+      this.$http.get("/api/goods/getOneGoodTypeList", {params: {goodTypeId: (this.indexs + 1)}}, {emulateJSON: true}).then((result) => {
         this.oneGoodTypeList = result.data;
       }).catch((result) => {
         console.log(result);
@@ -54,14 +57,15 @@
 </script>
 
 <style scoped>
-  .clear{
+  .clear {
     clear: both;
   }
+
   .goods {
     width: 100%;
     margin-top: 83px;
     background-color: #EEE;
-    padding: 10px 0 ;
+    padding: 10px 0;
   }
 
   .goods .goodType {
@@ -90,12 +94,12 @@
     float: left;
     width: 10px;
     height: 10px;
-    margin: 8px 0 0 ;
+    margin: 8px 0 0;
     background-color: #71D0B0;
     border-radius: 5px;
   }
 
-  .goods .goodType .oneGoodType .activeBgColor{
+  .goods .goodType .oneGoodType .activeBgColor {
     background-color: #CD6262;
   }
 
@@ -112,7 +116,7 @@
   }
 
   .goods .oneGoodTypeList .oneGood {
-    width:32%;
+    width: 32%;
     background-color: #fff;
     height: 90px;
     float: left;

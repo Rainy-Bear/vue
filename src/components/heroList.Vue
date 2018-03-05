@@ -10,6 +10,7 @@
   import LolHeader from "./header/lolHeader.vue";
   import HeroListCon from "./hero/heroListCon.vue";
   import LolBottom from "./bottom/lolBottom.vue";
+
   export default {
     components: {
       LolHeader,

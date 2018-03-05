@@ -17,7 +17,7 @@
     },
     mounted:function () {
       this.$nextTick(function () {
-        this.$ajax.get('/api/valueBook/getVB').then((result) => {
+        this.$http.get('/api/valueBook/getVB').then((result) => {
             this.vbArr = result.data;
           }).catch((result)=>{
           console.log(result);

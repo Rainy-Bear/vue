@@ -7,7 +7,7 @@
       <!--英雄类型和名称的盒子-->
       <div class="heroTAndN">
         <div class="heroType">
-          <span v-for="(item,index) in heroType" :key="item.heroTypeId" v-bind:class="{marLeft: index>0}">{{item.heroTypeName}}</span>
+          <span v-for="(item,index) in heroType" :key="item.heroTypeId" :class="{marLeft: index > 0}">{{item.heroTypeName}}</span>
         </div>
         <div class="name">
           <span class="heroTitle">{{heroTitle}}</span>
@@ -44,7 +44,7 @@
     <div class="heroBG">
       <div class="heroBGTip"><span>英雄背景</span></div>
       <div class="heroBGIntro" ref="heroBGIntro" :class="{heroBGIntroH: readMore}">
-        <p v-for="(item,index) in heroBg" :style="{marTop: index>2}">{{item}}</p>
+        <p v-for="(item,index) in heroBg">{{item}}</p>
       </div>
       <div class="readMore" ref="readMore" v-on:click="readMoreClick">查看更多...</div>
     </div>
@@ -58,9 +58,10 @@
   import SkillIntro from "./skillIntro.vue";
   import ReconEquip from "./reconEquip.vue";
   import UseSkill from "./userSkill.vue";
+
   export default {
     name: "heroDetailCon",
-    data(){
+    data() {
       return {
         heroSkinImg: "",
         heroType: "",
@@ -71,7 +72,7 @@
         dataInfo: {
           dataInfoWidth: "",
           proWidth: "",
-          payAtt: "",
+          phyAtt: "",
           magAtt: "",
           defCap: "",
           fitDif: ""
@@ -85,18 +86,14 @@
       UseSkill
     },
     methods: {
-        readMoreClick: function(){
-          this.readMore  = !this.readMore;
-//          this.$refs.heroBGIntro.style.transitionProperty = "height";
-//          this.$refs.heroBGIntro.style.transitionDuration = "500ms";
-//          this.$refs.heroBGIntro.style.webkitTransitionProperty = "height";
-//          this.$refs.heroBGIntro.style.webkitTransitionDuration = "500ms";
-          if(this.readMore){
-            this.$refs.readMore.innerText = "收起...";
-          }else {
-            this.$refs.readMore.innerText = "查看更多...";
-          }
+      readMoreClick: function () {
+        this.readMore = !this.readMore;
+        if (this.readMore) {
+          this.$refs.readMore.innerText = "收起";
+        } else {
+          this.$refs.readMore.innerText = "查看更多...";
         }
+      }
     },
     mounted: function () {
       //动态设置dataInfo进度条宽度
@@ -104,7 +101,7 @@
       var dataNameWidth = this.$refs.spanWidth.getBoundingClientRect().width;
       this.dataInfo.proWidth = parseInt(this.dataInfo.dataInfoWidth) - parseInt(dataNameWidth) - parseInt(15);
       //获取英雄详情
-      this.$ajax.get("/api/hero/getHeroDetail", {params: {heroId: this.$route.params.heroId}}, {emulateJSON: true}).then((result) => {
+      this.$http.get("/api/hero/getHeroDetail", {params: {heroId: this.$route.params.heroId}}, {emulateJSON: true}).then((result) => {
         this.heroSkinImg = result.data[0].heroSkin;
         this.heroName = result.data[0].name;
         this.heroTitle = result.data[0].title;
@@ -117,7 +114,7 @@
         console.log(result);
       });
       //获取英雄类型
-      this.$ajax.get("/api/hero/getHeroType", {params: {heroId: this.$route.params.heroId}}, {emulateJSON: true}).then((result) => {
+      this.$http.get("/api/hero/getHeroType", {params: {heroId: this.$route.params.heroId}}, {emulateJSON: true}).then((result) => {
         this.heroType = result.data;
       }).catch((result) => {
         console.log(result);
@@ -128,9 +125,6 @@
 </script>
 
 <style scoped>
-  .clear {
-    clear: both;
-  }
 
   .content {
     width: 100%;
@@ -208,7 +202,7 @@
 
   .dataInfo {
     width: 94%;
-    padding: 10px 3%;
+    margin: 10px 3%;
   }
 
   .dataInfo .phyAtt,
@@ -275,17 +269,14 @@
   .heroBG .heroBGIntro {
     width: 94%;
     height: 100px;
-    /*transition-property: height;*/
-    /*transition-duration: 2s;*/
-    /*-webkit-transition-property: height;*/
-    /*-webkit-transition-duration: 2s;*/
-    overflow : hidden;
+    overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     margin: 0 auto;
   }
+
   .heroBG .heroBGIntro p {
     text-align: justify;
     font-size: 13px;
@@ -293,6 +284,7 @@
     color: #666;
     text-indent: 26px;
   }
+
   .heroBG .readMore {
     width: 94%;
     margin: 0 auto;
@@ -302,10 +294,6 @@
 
   .heroBG .heroBGIntroH {
     height: auto;
-    /*transition-property: height;*/
-    /*transition-duration: 2s;*/
-    /*-webkit-transition-property: height;*/
-    /*-webkit-transition-duration: 2s;*/
     overflow: auto;
     text-overflow: clip;
     display: block;
