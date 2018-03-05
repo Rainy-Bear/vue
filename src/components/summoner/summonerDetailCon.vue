@@ -31,7 +31,7 @@
       }
     },
     mounted: function () {
-      var num = Math.ceil(Math.random() * 6);
+      var num = Math.ceil(Math.random() * 7);
       this.$refs.bgColor.style.backgroundColor = this.color[num];
       this.$http.get("/api/summoner/getOneSummoner", {params: {summonerId: this.$route.params.summonerId}}, {emulateJSON: true}).then((result) => {
         this.summoner.img = result.data[0].imgUrl;
@@ -60,7 +60,7 @@
 
   .info {
     width: 88%;
-    margin: 20px auto 0;
+    margin: 20px 3%;
     background-color: #FFF;
     border-radius: 8px;
     padding: 10px 3%;
