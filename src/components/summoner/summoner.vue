@@ -1,7 +1,8 @@
 <template>
   <div class="summoner">
     <div class="summonerList">
-      <router-link class="oneSummoner" v-for="(item,index) in summoner" :key="item.summonerId" :class="{marLeft:index%3!==0}"
+      <router-link class="oneSummoner" v-for="(item,index) in summoner" :key="item.summonerId"
+                   :class="{marLeft:index %3 !== 0}"
                    :to="{name:'summonerDetail',params:{summonerId: item.summonerId}}">
         <img :src="item.imgUrl" alt="">
         <span>{{item.name}}</span>
@@ -12,7 +13,7 @@
 </template>
 
 <script>
-  export default{
+  export default {
     name: 'summoner',
     data() {
       return {
@@ -23,7 +24,7 @@
       this.$http.get("/api/summoner/getSummonerList").then((result) => {
         this.summoner = result.data;
       }).catch((result) => {
-        console.clear(result);
+        console.log(result);
       });
     }
   }
@@ -31,9 +32,10 @@
 
 <style scoped>
 
-  .clear{
+  .clear {
     clear: both;
   }
+
   .summoner {
     width: 100%;
     margin-top: 83px;
@@ -57,6 +59,7 @@
     color: #666;
     text-align: center;
   }
+
   .summoner .summonerList .marLeft {
     margin-left: 2%;
   }

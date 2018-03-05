@@ -39,7 +39,7 @@
       if (parseInt(this.contentHeight) < parseInt(clientHeight)) {
         this.contentHeight = parseInt(clientHeight) - parseInt(81);
       }
-      var num = Math.ceil(Math.random() * 7);
+      var num = Math.ceil(Math.random() * 6);
       this.$refs.contentHeight.style.backgroundColor = this.color[num];
       this.$http.get("/api/goods/getGoodDetail", {params: {goodId: this.$route.params.goodId}}, {emulateJSON: true}).then((result) => {
         this.goodDetail = result.data[0];
