@@ -20,7 +20,7 @@
       }
     },
     mounted: function () {
-      var num = Math.ceil(Math.random() * 6);
+      var num = Math.round(Math.random() * 6);
       this.$refs.bgColor.style.backgroundColor = this.color[num];
       this.$http.get('/api/valueBook/getOneVB', {params: {id: this.$route.query.id}}, {emulateJSON: true}).then((res) => {
         this.name = res.data[0].name;
@@ -44,10 +44,6 @@
   .vbCon {
     top: 0;
     bottom: 0;
-  }
-
-  .vbiBgColor {
-    background-color: #37C84D;
   }
 
   .content .info {

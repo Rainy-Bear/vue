@@ -1,7 +1,9 @@
 <template>
   <div class="content vbCon">
     <div class="vbContainer">
-      <router-link v-for="(item, index) in vbArr" :key="item.id" :to="{name: 'valueBookIntro',query:{id: item.id}}" class="vbArr"  v-bind:class="{marRight: (index+1)%3!==0, matTop: index>2}">{{item.name}}</router-link>
+      <router-link v-for="(item, index) in vbArr" :key="item.id" :to="{name: 'valueBookIntro',query:{id: item.id}}"
+                   class="vbArr" v-bind:class="{marRight: (index + 1) % 3 !== 0, matTop: index > 2}">{{item.name}}
+      </router-link>
       <div class="clear"></div>
     </div>
   </div>
@@ -10,16 +12,16 @@
 <script>
   export default {
     name: "valueBookCon",
-    data(){
+    data() {
       return {
         vbArr: ""
       }
     },
-    mounted:function () {
+    mounted: function () {
       this.$nextTick(function () {
         this.$http.get('/api/valueBook/getVB').then((result) => {
-            this.vbArr = result.data;
-          }).catch((result)=>{
+          this.vbArr = result.data;
+        }).catch((result) => {
           console.log(result);
         });
       });
@@ -38,11 +40,13 @@
     margin: 0 auto;
     padding: 10px 0;
   }
+
   .vbCon {
     width: 100%;
     background-color: #EFEFEF;
     margin-top: 41px;
   }
+
   .vbContainer a.vbArr {
     width: 32%;
     height: 60px;
