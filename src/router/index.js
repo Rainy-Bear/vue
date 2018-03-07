@@ -4,12 +4,12 @@ import Lol from '../components/lol.vue'
 import Hero from "../components/hero/hero.vue"
 import Goods from "../components/goods/goods.vue"
 import Summoner from "../components/summoner/summoner.vue"
-import ValueBook from '../components/valueBook.vue'
-import ValueBookIntro from '../assets/valueBookDetail.vue'
-import HeroList from '../components/heroList.vue'
-import HeroDetail from '../components/heroDetail.vue'
-import GoodDetail from '../components/goodDetail.vue'
-import SummonerDetail from  '../components/summonerDetail.vue'
+import ValueBook from '../components/valueBook/valueBook.vue'
+import ValueBookIntro from '../components/valueBook/valueBookDetail.vue'
+import HeroList from '../components/hero/heroList.vue'
+import HeroDetail from '../components/hero/heroDetail.vue'
+import GoodDetail from '../components/goods/goodDetail.vue'
+import SummonerDetail from '../components/summoner/summonerDetail.vue'
 Vue.use(Router)
 
 export default new Router({
