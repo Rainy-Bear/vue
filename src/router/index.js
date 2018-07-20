@@ -13,7 +13,6 @@ import SummonerDetail from '../components/summoner/summonerDetail.vue'
 Vue.use(Router)
 
 export default new Router({
-  // linkActiveClass: 'active',
   mode:"history",
   routes: [
     {
