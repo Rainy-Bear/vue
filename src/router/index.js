@@ -13,7 +13,7 @@ import SummonerDetail from '../components/summoner/summonerDetail.vue'
 Vue.use(Router)
 
 export default new Router({
-  mode:"history",
+  mode: "history",
   routes: [
     {
       path: '/',
@@ -25,35 +25,35 @@ export default new Router({
           path: "/hero",
           name: "hero",
           component: Hero
-        },{
+        }, {
           path: "/goods",
           component: Goods,
-        },{
+        }, {
           path: "/summoner",
           component: Summoner
         }
       ]
-    },{
+    }, {
       path: "/valueBook",
       name: "valueBook",
       component: ValueBook
-    },{
+    }, {
       path: "/valueBookIntro",
       name: "valueBookIntro",
       component: ValueBookIntro
-    },{
+    }, {
       path: "/heroList/:heroTypeId",
       name: "heroList",
       component: HeroList
-    },{
+    }, {
       path: "/heroDetail/:heroId",
       name: "heroDetail",
       component: HeroDetail
-    },{
+    }, {
       path: "/goodDetail/:goodId",
       name: "goodDetail",
       component: GoodDetail
-    },{
+    }, {
       path: "/summonerDetail/:summonerId",
       name: "summonerDetail",
       component: SummonerDetail

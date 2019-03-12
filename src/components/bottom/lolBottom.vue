@@ -8,46 +8,46 @@
 </template>
 
 <script>
-  export default {
-    name: 'LolBottom',
-    data() {
-      return {
-        showOrHide: true
-      }
-    },
-    methods: {
-      fetchRoute() {
-        this.showOrHide = this.$route.path === "/hero";
-      },
-    },
-    created() {
-      this.fetchRoute();
-    },
-    watch: {
-      "$route": "fetchRoute"
+export default {
+  name: "LolBottom",
+  data() {
+    return {
+      showOrHide: true
+    };
+  },
+  methods: {
+    fetchRoute() {
+      this.showOrHide = this.$route.path === "/hero";
     }
+  },
+  created() {
+    this.fetchRoute();
+  },
+  watch: {
+    $route: "fetchRoute"
   }
+};
 </script>
 
 <style>
-  .bottom {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 10px;
-  }
+.bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 10px;
+}
 
-  .bottom .advice {
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
-  }
+.bottom .advice {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}
 
-  .bottom .advice span {
-    width: 100%;
-    display: block;
-    text-align: center;
-    font-size: 12px;
-    color: #999;
-  }
+.bottom .advice span {
+  width: 100%;
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #999;
+}
 </style>

@@ -7,15 +7,15 @@
 </template>
 
 <script>
-  import LolHeader from "../header/lolHeader.vue";
-  import ValueBookCon from "./valueBookCon.vue";
-  import LolBottom from "../bottom/lolBottom.vue";
-  export default {
-    components: {
-      LolHeader,
-      ValueBookCon,
-      LolBottom
-    },
-    name: 'lol'
-  }
+import LolHeader from "../header/lolHeader.vue";
+import ValueBookCon from "./valueBookCon.vue";
+import LolBottom from "../bottom/lolBottom.vue";
+export default {
+  components: {
+    LolHeader,
+    ValueBookCon,
+    LolBottom
+  },
+  name: "lol"
+};
 </script>

@@ -6,13 +6,13 @@
 
 <script>
 export default {
-  name: 'lol'
-}
+  name: "lol"
+};
 </script>
 
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-  }
+* {
+  margin: 0;
+  padding: 0;
+}
 </style>
