@@ -13,14 +13,14 @@ const express = require('express');
 const app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // 后端api路由
 app.use('/api/heroType', heroType);
 app.use('/api/hero', hero);
 app.use('/api/valueBook', valueBook);
 app.use('/api/goods', goods);
-app.use('/api/summoner',summoner);
+app.use('/api/summoner', summoner);
 
 // 监听端口
 app.listen(8080);

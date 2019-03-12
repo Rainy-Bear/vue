@@ -3,11 +3,11 @@
  */
 module.exports = {
   mysql: {
-    host: 'localhost',
-    user: 'root',
-    password: 'Corner',
-    database: 'vuelol',
+    host: "localhost",
+    user: "root",
+    password: "Corner",
+    database: "vuelol",
     useConnectionPooling: true,
-    port: '3306'
+    port: "3306"
   }
-}
+};

@@ -2,37 +2,37 @@
 //  * Created by xll on 2017/11/13.
 //  */
 var models = require("../db");
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-var mysql = require('mysql');
+var mysql = require("mysql");
 
-router.get('/heroType', function (req, res, next) {
+router.get("/heroType", function(req, res, next) {
   var connection = mysql.createConnection(models.mysql);
-  connection.connect(function (err) {
+  connection.connect(function(err) {
     if (err) {
       console.log(err);
     }
   });
-  var sql = 'select * from heroType';
-  connection.query(sql, function (err, result) {
+  var sql = "select * from heroType";
+  connection.query(sql, function(err, result) {
     res.send(result);
   });
   connection.end();
 });
 
-router.get('/getOneType', function (req, res, next) {
+router.get("/getOneType", function(req, res, next) {
   var connection = mysql.createConnection(models.mysql);
-  connection.connect(function (err) {
+  connection.connect(function(err) {
     if (err) {
       console.log(err);
     }
   });
   var condition = {
-    'heroTypeId': req.query.heroTypeId
+    heroTypeId: req.query.heroTypeId
   };
-  var sql = 'select * from heroType where heroTypeId = ?';
+  var sql = "select * from heroType where heroTypeId = ?";
   var params = [condition.heroTypeId];
-  connection.query(sql, params, function (err, result) {
+  connection.query(sql, params, function(err, result) {
     res.send(result);
   });
   connection.end();
