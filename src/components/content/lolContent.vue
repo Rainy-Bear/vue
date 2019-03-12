@@ -11,7 +11,7 @@
         <router-link to="/summoner">召唤师技能</router-link>
       </span>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 

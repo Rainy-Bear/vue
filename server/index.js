@@ -4,8 +4,8 @@
 const goods = require('./api/good');
 const heroType = require('./api/heroType');
 const hero = require('./api/hero');
-const valueBook = require("./api/valueBook");
-const summoner = require("./api/summuner");
+const valueBook = require('./api/valueBook');
+const summoner = require('./api/summuner');
 const fs = require('fs');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -25,4 +25,3 @@ app.use('/api/summoner', summoner);
 // 监听端口
 app.listen(8080);
 console.log('success listen at port:8080......');
-
