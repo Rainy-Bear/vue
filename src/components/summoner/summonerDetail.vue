@@ -7,18 +7,18 @@
 </template>
 
 <script>
-import LolHeader from "../header/lolHeader.vue";
-import summonerDetailCon from "./summonerDetailCon.vue";
-import LolBottom from "../bottom/lolBottom.vue";
+  import LolHeader from '../header/lolHeader.vue';
+  import summonerDetailCon from './summonerDetailCon.vue';
+  import LolBottom from '../bottom/lolBottom.vue';
 
-export default {
-  components: {
-    LolHeader,
-    summonerDetailCon,
-    LolBottom
-  },
-  name: "summonerDetail"
-};
+  export default {
+    components: {
+      LolHeader,
+      summonerDetailCon,
+      LolBottom
+    },
+    name: 'summonerDetail'
+  };
 </script>
 
 <style scoped>

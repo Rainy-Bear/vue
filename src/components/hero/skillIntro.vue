@@ -8,8 +8,7 @@
         class="skillItem"
         v-for="(item,index) in skill.skillArr"
         :class="{marLeft: index > 0, active: index === skill.indexs}"
-        v-on:click="skill.clickImg(index)"
-      >
+        v-on:click="skill.clickImg(index)">
         <img :src="item.imgUrl" alt>
       </div>
       <div class="clear"></div>
@@ -21,8 +20,7 @@
         <div class="skillDetailIntro" :class="{introMT: index > 0}">
           <span
             v-for="(item,sDIIndex) in skill.skillDetailIntro[index]"
-            :class="{marTop: sDIIndex > 0}"
-          >{{item}}</span>
+            :class="{marTop: sDIIndex > 0}">{{item}}</span>
         </div>
         <div class="skillStat" :class="{introMT: index > 0}">
           <span v-for="item in skill.skillStat[index]">{{item}}</span>
@@ -33,141 +31,141 @@
 </template>
 
 <script>
-export default {
-  name: "skillIntro",
-  data() {
-    return {
-      skill: {
-        skillArr: "",
-        skillDetailIntro: [],
-        skillStat: [],
-        indexs: 0,
-        clickImg: function(index) {
-          this.indexs = index;
+  export default {
+    name: 'skillIntro',
+    data() {
+      return {
+        skill: {
+          skillArr: '',
+          skillDetailIntro: [],
+          skillStat: [],
+          indexs: 0,
+          clickImg: function (index) {
+            this.indexs = index;
+          }
         }
-      }
-    };
-  },
-  mounted: function() {
-    //获取技能
-    this.$http
-      .get(
-        "/api/hero/getSkill",
-        { params: { heroId: this.$route.params.heroId } },
-        { emulateJSON: true }
-      )
-      .then(result => {
-        this.skill.skillArr = result.data;
-        this.skill.skillArr.forEach((item, index) => {
-          this.skill.skillStat[index] = [];
-          this.skill.skillDetailIntro[index] = [];
-          var arr = item.intro.split("#");
-          arr.forEach((items, indexs) => {
-            if (items.indexOf("@") === 0) {
-              var str = items.replace("@", "");
-              this.skill.skillStat[index].push(str);
-            } else {
-              this.skill.skillDetailIntro[index].push(items);
-            }
+      };
+    },
+    mounted: function () {
+      //获取技能
+      this.$http
+        .get(
+          '/api/hero/getSkill',
+          {params: {heroId: this.$route.params.heroId}},
+          {emulateJSON: true}
+        )
+        .then(result => {
+          this.skill.skillArr = result.data;
+          this.skill.skillArr.forEach((item, index) => {
+            this.skill.skillStat[index] = [];
+            this.skill.skillDetailIntro[index] = [];
+            var arr = item.intro.split('#');
+            arr.forEach((items, indexs) => {
+              if (items.indexOf('@') === 0) {
+                var str = items.replace('@', '');
+                this.skill.skillStat[index].push(str);
+              } else {
+                this.skill.skillDetailIntro[index].push(items);
+              }
+            });
           });
+        })
+        .catch(result => {
+          console.log(result);
         });
-      })
-      .catch(result => {
-        console.log(result);
-      });
-  }
-};
+    }
+  };
 </script>
 
 <style scoped>
-.clear {
-  clear: both;
-}
+  .clear {
+    clear: both;
+  }
 
-.skill {
-  margin-top: 10px;
-  background-color: #ffffff;
-  padding: 0 0 10px;
-}
+  .skill {
+    margin-top: 10px;
+    background-color: #ffffff;
+    padding: 0 0 10px;
+  }
 
-.skill .skillTip {
-  width: 100%;
-  height: 40px;
-  line-height: 40px;
-  font-size: 20px;
-  font-weight: bold;
-  border-bottom: 1px solid #eee;
-}
+  .skill .skillTip {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid #eee;
+  }
 
-.skill .skillTip span {
-  display: block;
-  width: 94%;
-  margin: 0 auto;
-}
+  .skill .skillTip span {
+    display: block;
+    width: 94%;
+    margin: 0 auto;
+  }
 
-.skill .skillCon {
-  width: 94%;
-  margin: 10px auto 0;
-}
+  .skill .skillCon {
+    width: 94%;
+    margin: 10px auto 0;
+  }
 
-.skill .skillCon .skillItem {
-  float: left;
-  width: 18%;
-}
+  .skill .skillCon .skillItem {
+    float: left;
+    width: 18%;
+  }
 
-.skill .skillCon .skillItem img {
-  display: block;
-  width: 90%;
-  border-radius: 50%;
-  margin: 0 auto 5px;
-}
+  .skill .skillCon .skillItem img {
+    display: block;
+    width: 90%;
+    border-radius: 50%;
+    margin: 0 auto 5px;
+  }
 
-.skill .skillCon .marLeft {
-  margin-left: 2.5%;
-}
+  .skill .skillCon .marLeft {
+    margin-left: 2.5%;
+  }
 
-.skill .skillCon .active {
-  border-bottom: 4px solid #d4a93e;
-}
+  .skill .skillCon .active {
+    border-bottom: 4px solid #d4a93e;
+  }
 
-.skill .skillCon .skillIntro {
-  margin-top: 15px;
-  text-align: justify;
-}
+  .skill .skillCon .skillIntro {
+    margin-top: 15px;
+    text-align: justify;
+  }
 
-.skill .skillCon .skillIntro .skillName {
-  font-size: 18px;
-  font-weight: bold;
-  line-height: 27px;
-}
+  .skill .skillCon .skillIntro .skillName {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 27px;
+  }
 
-.skill .skillCon .skillIntro .subTitle {
-  line-height: 27px;
-  font-size: 15px;
-  color: #999;
-  margin-left: 10px;
-}
+  .skill .skillCon .skillIntro .subTitle {
+    line-height: 27px;
+    font-size: 15px;
+    color: #999;
+    margin-left: 10px;
+  }
 
-.skill .skillCon .introMT {
-  margin-top: 10px;
-}
+  .skill .skillCon .introMT {
+    margin-top: 10px;
+  }
 
-.skill .skillCon .skillIntro .skillDetailIntro span {
-  text-indent: 26px;
-  display: block;
-  font-size: 13px;
-  color: #666;
-  line-height: 20px;
-}
+  .skill .skillCon .skillIntro .skillDetailIntro span {
+    text-indent: 26px;
+    display: block;
+    font-size: 13px;
+    color: #666;
+    line-height: 20px;
+  }
 
-.skill .skillCon .skillIntro .skillStat span {
-  display: block;
-  font-size: 12px;
-  color: #888;
-  line-height: 18px;
-}
+  .skill .skillCon .skillIntro .skillStat span {
+    display: block;
+    font-size: 12px;
+    color: #888;
+    line-height: 18px;
+  }
 
-.skill .skillCon .skillIntro .skillDetailIntro .marTop {
-  margin-top: 4px;
-}
+  .skill .skillCon .skillIntro .skillDetailIntro .marTop {
+    margin-top: 4px;
+  }
 </style>

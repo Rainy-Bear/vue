@@ -11,48 +11,48 @@
         <router-link to="/summoner">召唤师技能</router-link>
       </span>
     </div>
-    <router-view />
+    <router-view/>
   </div>
 </template>
 
 <script>
-export default {
-  name: "LolContent"
-};
+  export default {
+    name: 'LolContent'
+  };
 </script>
 
 <style scoped>
-.content {
-  width: 100%;
-  position: relative;
-  margin-top: 41px;
-}
+  .content {
+    width: 100%;
+    position: relative;
+    margin-top: 41px;
+  }
 
-.content .navBar {
-  position: fixed;
-  top: 40px;
-  width: 100%;
-  height: 40px;
-  line-height: 40px;
-  background-color: #ffffff;
-}
+  .content .navBar {
+    position: fixed;
+    top: 40px;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background-color: #ffffff;
+  }
 
-.content .navBar span {
-  display: block;
-  float: left;
-  text-align: center;
-  width: 33.3%;
-}
+  .content .navBar span {
+    display: block;
+    float: left;
+    text-align: center;
+    width: 33.3%;
+  }
 
-.content .navBar span a {
-  text-decoration: none;
-  color: #000000;
-  display: inline-block;
-  width: 80%;
-}
+  .content .navBar span a {
+    text-decoration: none;
+    color: #000000;
+    display: inline-block;
+    width: 80%;
+  }
 
-.router-link-active {
-  color: #d4a93e;
-  border-bottom: 3px solid #d4a93e;
-}
+  .router-link-active {
+    color: #d4a93e;
+    border-bottom: 3px solid #d4a93e;
+  }
 </style>

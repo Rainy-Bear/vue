@@ -5,14 +5,14 @@
 </template>
 
 <script>
-export default {
-  name: "lol"
-};
+  export default {
+    name: 'lol'
+  };
 </script>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-}
+  * {
+    margin: 0;
+    padding: 0;
+  }
 </style>

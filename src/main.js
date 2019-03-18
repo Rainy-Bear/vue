@@ -5,6 +5,7 @@ import App from './App';
 import router from './router';
 import VueRouter from 'vue-router';
 import axios from 'axios';
+
 Vue.config.productionTip = false;
 Vue.prototype.$http = axios;
 /* eslint-disable no-new */
@@ -12,6 +13,6 @@ new Vue({
   el: '#lol',
   router,
   template: '<App/>',
-  components: { App }
+  components: {App}
 });
 Vue.use(VueRouter);

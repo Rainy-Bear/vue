@@ -7,16 +7,16 @@
 </template>
 
 <script>
-import LolHeader from "../header/lolHeader.vue";
-import HeroDetailCon from "./heroDetailCon.vue";
-import LolBottom from "../bottom/lolBottom.vue";
+  import LolHeader from '../header/lolHeader.vue';
+  import HeroDetailCon from './heroDetailCon.vue';
+  import LolBottom from '../bottom/lolBottom.vue';
 
-export default {
-  components: {
-    LolHeader,
-    HeroDetailCon,
-    LolBottom
-  },
-  name: "lol"
-};
+  export default {
+    components: {
+      LolHeader,
+      HeroDetailCon,
+      LolBottom
+    },
+    name: 'lol'
+  };
 </script>

@@ -7,15 +7,16 @@
 </template>
 
 <script>
-import LolHeader from "../header/lolHeader.vue";
-import GoodDetailCon from "./goodDetailCon.vue";
-import LolBottom from "../bottom/lolBottom.vue";
-export default {
-  components: {
-    LolHeader,
-    GoodDetailCon,
-    LolBottom
-  },
-  name: "goodDetail"
-};
+  import LolHeader from '../header/lolHeader.vue';
+  import GoodDetailCon from './goodDetailCon.vue';
+  import LolBottom from '../bottom/lolBottom.vue';
+
+  export default {
+    components: {
+      LolHeader,
+      GoodDetailCon,
+      LolBottom
+    },
+    name: 'goodDetail'
+  };
 </script>

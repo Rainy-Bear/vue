@@ -8,8 +8,7 @@
         <span
           v-for="(item, index) in reconEquip.map"
           :class="{active: index === reconEquip.index}"
-          @click="clickMapName(index)"
-        >{{item.name}}</span>
+          @click="clickMapName(index)">{{item.name}}</span>
       </div>
       <div class="equip" ref="equip">
         <div class="equipList" v-for="item in reconEquip.equipMap" v-if="item !== null">
@@ -18,8 +17,7 @@
             <router-link
               v-for="items in item[1]"
               :key="items.goodId"
-              :to="{name: 'goodDetail',params: {goodId: items.goodId}}"
-            >
+              :to="{name: 'goodDetail',params: {goodId: items.goodId}}">
               <img :src="items.imgUrl" alt>
             </router-link>
           </div>
@@ -31,161 +29,161 @@
 </template>
 
 <script>
-export default {
-  name: "reconEquip",
-  data() {
-    return {
-      reconEquip: {
-        index: 0,
-        map: [{ name: "召唤师峡谷" }, { name: "极地大乱斗" }],
-        equipMap: [],
-        equipWidth: "",
-        equipImgWidth: ""
+  export default {
+    name: 'reconEquip',
+    data() {
+      return {
+        reconEquip: {
+          index: 0,
+          map: [{name: '召唤师峡谷'}, {name: '极地大乱斗'}],
+          equipMap: [],
+          equipWidth: '',
+          equipImgWidth: ''
+        }
+      };
+    },
+    methods: {
+      clickMapName: function (index) {
+        this.reconEquip.index = index;
+        this.reconEquip.equipMap = [];
+        this.$http
+          .get(
+            '/api/goods/getEquip',
+            {
+              params: {
+                heroId: this.$route.params.heroId,
+                mapId: index + 1
+              }
+            },
+            {emulateJSON: true}
+          )
+          .then(result => {
+            this.reconEquip.equipMap = result.data;
+            console.log(result.data);
+          })
+          .catch(result => {
+            console.log(result);
+          });
       }
-    };
-  },
-  methods: {
-    clickMapName: function(index) {
-      this.reconEquip.index = index;
-      this.reconEquip.equipMap = [];
+    },
+    mounted: function () {
+      //动态设置装备img宽度
+      this.reconEquip.equipWidth = this.$refs.equip.getBoundingClientRect().width;
+      var equipNameWidth = '68px';
+      this.reconEquip.equipImgWidth =
+        parseInt(this.reconEquip.equipWidth) -
+        parseInt(equipNameWidth) -
+        parseInt(5);
       this.$http
         .get(
-          "/api/goods/getEquip",
+          '/api/goods/getEquip',
           {
             params: {
               heroId: this.$route.params.heroId,
-              mapId: index + 1
+              mapId: this.reconEquip.index + 1
             }
           },
-          { emulateJSON: true }
+          {emulateJSON: true}
         )
         .then(result => {
           this.reconEquip.equipMap = result.data;
-          console.log(result.data);
         })
         .catch(result => {
           console.log(result);
         });
     }
-  },
-  mounted: function() {
-    //动态设置装备img宽度
-    this.reconEquip.equipWidth = this.$refs.equip.getBoundingClientRect().width;
-    var equipNameWidth = "68px";
-    this.reconEquip.equipImgWidth =
-      parseInt(this.reconEquip.equipWidth) -
-      parseInt(equipNameWidth) -
-      parseInt(5);
-    this.$http
-      .get(
-        "/api/goods/getEquip",
-        {
-          params: {
-            heroId: this.$route.params.heroId,
-            mapId: this.reconEquip.index + 1
-          }
-        },
-        { emulateJSON: true }
-      )
-      .then(result => {
-        this.reconEquip.equipMap = result.data;
-      })
-      .catch(result => {
-        console.log(result);
-      });
-  }
-};
+  };
 </script>
 
 <style>
-.clear {
-  clear: both;
-}
+  .clear {
+    clear: both;
+  }
 
-.reconEquip {
-  margin-top: 10px;
-  background-color: #ffffff;
-}
+  .reconEquip {
+    margin-top: 10px;
+    background-color: #ffffff;
+  }
 
-.reconEquip .reTip {
-  width: 100%;
-  height: 40px;
-  line-height: 40px;
-  font-size: 20px;
-  font-weight: bold;
-  border-bottom: 1px solid #eee;
-}
+  .reconEquip .reTip {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid #eee;
+  }
 
-.reconEquip .reTip span {
-  display: block;
-  width: 94%;
-  margin: 0 auto;
-}
+  .reconEquip .reTip span {
+    display: block;
+    width: 94%;
+    margin: 0 auto;
+  }
 
-.reconEquip .reIntro {
-  width: 94%;
-  margin: 0 auto;
-  padding: 10px 0;
-}
+  .reconEquip .reIntro {
+    width: 94%;
+    margin: 0 auto;
+    padding: 10px 0;
+  }
 
-.reconEquip .reIntro .reMap {
-  width: 100%;
-  height: 30px;
-}
+  .reconEquip .reIntro .reMap {
+    width: 100%;
+    height: 30px;
+  }
 
-.reconEquip .reIntro .reMap span {
-  display: block;
-  float: left;
-  width: 50%;
-  height: 30px;
-  text-align: center;
-  font-size: 18px;
-  color: #333;
-}
+  .reconEquip .reIntro .reMap span {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 30px;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+  }
 
-.reconEquip .reIntro .reMap .active {
-  border-bottom: 4px solid #d4a93e;
-}
+  .reconEquip .reIntro .reMap .active {
+    border-bottom: 4px solid #d4a93e;
+  }
 
-.reconEquip .reIntro .equip {
-  margin-top: 10px;
-}
+  .reconEquip .reIntro .equip {
+    margin-top: 10px;
+  }
 
-.reconEquip .reIntro .equipList {
-  width: 100%;
-  height: 60px;
-}
+  .reconEquip .reIntro .equipList {
+    width: 100%;
+    height: 60px;
+  }
 
-.reconEquip .reIntro .equipList .equipName {
-  width: 68px;
-  height: 60px;
-  line-height: 60px;
-  color: #338c7a;
-  display: block;
-  float: left;
-  font-size: 16px;
-  letter-spacing: 1px;
-  font-weight: 600;
-}
+  .reconEquip .reIntro .equipList .equipName {
+    width: 68px;
+    height: 60px;
+    line-height: 60px;
+    color: #338c7a;
+    display: block;
+    float: left;
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
 
-.reconEquip .reIntro .equipList .equipImg {
-  float: right;
-  height: 60px;
-  line-height: 60px;
-}
+  .reconEquip .reIntro .equipList .equipImg {
+    float: right;
+    height: 60px;
+    line-height: 60px;
+  }
 
-.reconEquip .reIntro .equipList .equipImg a {
-  display: block;
-  width: 32%;
-  height: 60px;
-  float: left;
-}
+  .reconEquip .reIntro .equipList .equipImg a {
+    display: block;
+    width: 32%;
+    height: 60px;
+    float: left;
+  }
 
-.reconEquip .reIntro .equipList .equipImg a img {
-  display: block;
-  width: 48px;
-  height: 48px;
-  margin: 6px auto 0;
-  border-radius: 50%;
-}
+  .reconEquip .reIntro .equipList .equipImg a img {
+    display: block;
+    width: 48px;
+    height: 48px;
+    margin: 6px auto 0;
+    border-radius: 50%;
+  }
 </style>
